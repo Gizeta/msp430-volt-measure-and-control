@@ -19,14 +19,14 @@ void LCD1602_WriteCmd(uchar cmd)
 	LCD_DATA_PORT &= 0xF0;
 	LCD_DATA_PORT |= (cmd & 0xF0) >> 4;
 	__delay_cycles(500);
-	LCD_EN_PORT &= ~LCD_EN;
+	LCD_EN_PORT   &= ~LCD_EN;
 	__delay_cycles(500);
 
 	LCD_EN_PORT   |= LCD_EN;
 	LCD_DATA_PORT &= 0xF0;
 	LCD_DATA_PORT |= cmd & 0xF;
 	__delay_cycles(500);
-	LCD_EN_PORT &= ~LCD_EN;
+	LCD_EN_PORT   &= ~LCD_EN;
 }
 
 void LCD1602_WriteData(uchar data)
