@@ -8,6 +8,7 @@
 #include "util.h"
 
 extern float DA_Output;
+extern uint ADC_Value[];
 
 void main(void) {
 	uchar display[6];
@@ -26,9 +27,9 @@ void main(void) {
 
     while(1)
     {
-    	TLC5615_Convert((uint)(DA_Output * 1024 / 2.0f));
-    	__delay_cycles(5000);
-    	NumberToString(display, ADC_Convert(3.56f));
+    	TLC5615_Convert((uint)(DA_Output * 512 / 3.555f));
+    	__delay_cycles(50000);
+    	NumberToString(display, ADC_Convert(ADC_Value[0]));
     	LCD1602_Show(0, 0, display);
     	__delay_cycles(50000);
     }
@@ -37,5 +38,6 @@ void main(void) {
 #pragma vector=ADC10_VECTOR
 __interrupt void ADC10_ISR(void)
 {
-
+	ADC10_Enable();
 }
+

@@ -2,9 +2,11 @@
 #include "common.h"
 #include "util.h"
 
-float ADC_Convert(float max)
+#define MAX 3.555f
+
+float ADC_Convert(uint value)
 {
-	return ADC10MEM * max / 1024.0f;
+	return value * MAX / 1024;
 }
 
 void NumberToString(uchar *str, float number)
